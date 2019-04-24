@@ -1,4 +1,4 @@
-# Masp in opengl by Eduardo
+# Masp in opengl by Eduardo & Mateus
 
 # to install openGL in linux:
 
