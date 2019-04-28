@@ -5,10 +5,12 @@
 #include "masp.c"
 #include "objetos.c"
 
-static int ANG = 0;
-static int rotaX = 0;
-static int rotaY = 1;
-static int rotaZ = 0;
+static int ANGX = 0;
+static int ANGY = 0;
+static int ANGXY = 0;
+static double zoom = 0.5;
+
+static int posiX = 3;
 void init(void){
   glEnable(GL_DEPTH_TEST);
   glClearColor (0.0, 0.0, 0.0, 0.0);
@@ -18,9 +20,13 @@ void init(void){
 void display(void){
    glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
   glPushMatrix();
-gluLookAt(20, 4, 3, 0, 0, 0, 0, 1, 0);
+gluLookAt(0, 0.25, 1, 0, 0, 0, 0, 1, 0);
 
-  glRotatef ((GLfloat) ANG, rotaX, rotaY, rotaZ);
+  glRotatef ((GLfloat) ANGX, 0, 1, 0);
+
+  glRotatef ((GLfloat) ANGY, 1, 0, 0);
+
+  glScalef(zoom, zoom, zoom);
   
   criaChao();
 
@@ -48,17 +54,45 @@ void reshape (int w, int h){
 void keyboard(unsigned char key, int x, int y){
   switch (key) {
  case 'a':
-    ANG = (ANG + 5) % 360;
+    ANGX = (ANGX + 5) % 360;
     glutPostRedisplay();
     break;
   case 'd':
-    ANG = (ANG - 5) % 360;
+    ANGX = (ANGX - 5) % 360;
+    glutPostRedisplay();
+    break;
+  case 'w':
+    ANGY = (ANGY + 5) % 360;
+    glutPostRedisplay();
+    break;
+  case 's':
+    ANGY = (ANGY - 5) % 360;
+    glutPostRedisplay();
+    break;
+    case 'q':
+    ANGXY = (ANGXY + 5) % 360;
     glutPostRedisplay();
     break;
    case 27:                                         // tecla Esc (encerra o programa)
 	exit(0);
 	break;
   }
+}
+
+void mouseClick(int btn, int state, int x, int y) {
+  if (state == GLUT_DOWN) {
+    switch(btn) {
+    case 3:  //mouse wheel scrolls
+      zoom += 0.1;
+      break;
+    case 4:
+      zoom -= 0.1;
+      break;
+    default:
+      break;
+    }
+  }
+  glutPostRedisplay();
 }
 
 int main(int argc, char** argv){
@@ -71,6 +105,7 @@ int main(int argc, char** argv){
   glutDisplayFunc(display); 
   glutReshapeFunc(reshape);
   glutKeyboardFunc(keyboard);
+  glutMouseFunc(mouseClick);
   glutMainLoop();
   return 0;
 }

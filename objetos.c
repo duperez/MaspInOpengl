@@ -8,7 +8,7 @@ void criaObjetos(){
     glRotatef(90, 1, 0, 0);
     GLUquadricObj * p = gluNewQuadric();
     gluQuadricDrawStyle(p, GLU_FILL);
-    gluCylinder(p, 0.3, 0.3, 5, 4, 4);
+    gluCylinder(p, 0.3, 0.3, 5, 10, 10);
   glPopMatrix();
 
   //placa sinaleiro
