@@ -3,6 +3,7 @@
 #include<stdio.h>
 #include "chao.c"
 #include "masp.c"
+#include "objetos.c"
 
 static int ANG = 0;
 static int rotaX = 0;
@@ -23,10 +24,12 @@ gluLookAt(20, 4, 3, 0, 0, 0, 0, 1, 0);
   
   criaChao();
 
+  criaMasp(); 
+  
   criaRua();
 
-  criaMasp();
-  
+  criaObjetos();
+
 
   glPopMatrix();
   glutSwapBuffers();
