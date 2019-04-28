@@ -9,12 +9,13 @@ static int rotaX = 0;
 static int rotaY = 1;
 static int rotaZ = 0;
 void init(void){
+  glEnable(GL_DEPTH_TEST);
   glClearColor (0.0, 0.0, 0.0, 0.0);
 }
 
 
 void display(void){
-  glClear (GL_COLOR_BUFFER_BIT);
+   glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
   glPushMatrix();
 gluLookAt(20, 4, 3, 0, 0, 0, 0, 1, 0);
 
@@ -59,7 +60,7 @@ void keyboard(unsigned char key, int x, int y){
 
 int main(int argc, char** argv){
   glutInit(&argc, argv);
-  glutInitDisplayMode (GLUT_DOUBLE | GLUT_RGB);
+  glutInitDisplayMode (GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH);
   glutInitWindowSize (500, 500); 
   glutInitWindowPosition (100, 100);
   glutCreateWindow (argv[0]);
