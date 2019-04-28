@@ -34,10 +34,9 @@ void criaMasp(){
   glutSolidCube (1.0);
   glPopMatrix();
 
-
-  glColor3f(1.0, 1.0, 1.0);
       /* corpo*/ 
   glPushMatrix();
+  glColor3f(0.44, 0.5, 0.56);
   glTranslatef (0, 10.5, 9);
   glScalef (44.0, 10.0, 30);
   glutSolidCube (1.0);
@@ -57,6 +56,15 @@ void criaMasp(){
   glTranslatef (0, 18, 18.5);
   glScalef (44.0, 5.0, 3);
   glutSolidCube (1.0);
+  glPopMatrix();
+
+        /* rampa trazeira */
+  glPushMatrix();
+    glRotatef(330, 1, 0, 0);
+    glColor3f(0.44, 0.5, 0.56);
+    glTranslatef (0, 6, -24.0);
+    glScalef (10.0, 2.0, 5);
+    glutSolidCube (1.0);
   glPopMatrix();
 
 }
