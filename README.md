@@ -1,5 +1,11 @@
 # Masp in opengl by Eduardo & Mateus
 
+#Comando de camera:
+
+use w/a/s/d para rotacionar
+
+use o scroll do mouse ou q/e para daz zoon in e zoon out
+
 # to install openGL in linux:
 
 $ sudo apt-get update

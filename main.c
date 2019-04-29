@@ -1,9 +1,9 @@
 #include<stdlib.h>
 #include<GL/glut.h>
 #include<stdio.h>
-#include "chao.c"
-#include "masp.c"
-#include "objetos.c"
+#include "chao.h"
+#include "masp.h"
+#include "objetos.h"
 
 static int ANGX = 0;
 static int ANGY = 0;
@@ -69,8 +69,12 @@ void keyboard(unsigned char key, int x, int y){
     ANGY = (ANGY - 5) % 360;
     glutPostRedisplay();
     break;
-    case 'q':
-    ANGXY = (ANGXY + 5) % 360;
+  case 'q':
+    zoom += 0.1;
+    glutPostRedisplay();
+    break;
+  case 'e':
+    zoom -= 0.1;
     glutPostRedisplay();
     break;
    case 27:                                         // tecla Esc (encerra o programa)
