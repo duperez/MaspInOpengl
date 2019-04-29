@@ -1,10 +1,13 @@
-# Masp in opengl by Eduardo & Mateus
+Masp in opengl for T_ST765A_2019S1 - Computação Gráfica 
+by
+Eduardo Bianconi Perez: RA 196244 & Mateus Duarte castello: RA 203257
+to contact us use: e196244@dac.unicamp.br
 
-#Comando de camera:
+#camera commands:
 
-use w/a/s/d para rotacionar
+use w/a/s/d to rotate camera
 
-use o scroll do mouse ou q/e para daz zoon in e zoon out
+use mouse scroll or q/e on keyboard to zoon in or zoon out
 
 # to install openGL in linux:
 

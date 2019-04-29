@@ -1,3 +1,9 @@
+//camera commands:
+//use w/a/s/d to rotate camera
+//use mouse scroll or q/e on keyboard to zoon in or zoon out
+//by
+//Eduardo Bianconi Perez: RA 196244 & Mateus Duarte castello: RA 203257
+
 #include<stdlib.h>
 #include<GL/glut.h>
 #include<stdio.h>
