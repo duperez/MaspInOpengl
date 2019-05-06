@@ -95,3 +95,83 @@ void setTexturaFaixaDireita(GLuint textura_faixa){
         glTexCoord2fv(ctpF[3]);  glVertex3f(35, 0.501, 22.8);
     glEnd();
 }
+
+void setTexturaCorpoMaspFrente(GLuint texturaMasp){
+    GLfloat ctpF[4][2]={
+        {20, 0},
+        {-1, 0},
+        {20, 1},
+        {-1, 1}
+    };
+    glBindTexture(GL_TEXTURE_2D, texturaMasp);
+    glBegin(GL_QUADS);
+        glTexCoord2fv(ctpF[1]);  glVertex3f(22.1, 15.6, 24.1);
+        glTexCoord2fv(ctpF[0]);  glVertex3f(-22.1, 15.5, 24.1);
+        glTexCoord2fv(ctpF[2]);  glVertex3f(-22.1, 5.5, 24.1);
+        glTexCoord2fv(ctpF[3]);  glVertex3f(22.1, 5.6, 24.1);
+    glEnd();
+}
+
+void setTexturaCorpoMaspTraz(GLuint texturaMasp){
+    GLfloat ctpF[4][2]={
+        {20, 0},
+        {-1, 0},
+        {20, 1},
+        {-1, 1}
+    };
+    glBindTexture(GL_TEXTURE_2D, texturaMasp);
+    glBegin(GL_QUADS);
+        glTexCoord2fv(ctpF[1]);  glVertex3f(22.1, 15.6, -6.1);
+        glTexCoord2fv(ctpF[0]);  glVertex3f(-22.1, 15.5, -6.1);
+        glTexCoord2fv(ctpF[2]);  glVertex3f(-22.1, 5.5, -6.1);
+        glTexCoord2fv(ctpF[3]);  glVertex3f(22.1, 5.6, -6.1);
+    glEnd();
+}
+
+void setTexturaCorpoMaspEsquerda(GLuint texturaMasp){
+    GLfloat ctpF[4][2]={
+        {20, 1},
+        {20, 0},
+        {-1, 1},
+        {-1, 0}
+    };
+    glBindTexture(GL_TEXTURE_2D, texturaMasp);
+    glBegin(GL_QUADS);
+        glTexCoord2fv(ctpF[1]);  glVertex3f(22.1, 15.6, 24.1);
+        glTexCoord2fv(ctpF[0]);  glVertex3f(22.1, 5.5, 24.1);
+        glTexCoord2fv(ctpF[2]);  glVertex3f(22.1, 5.5, -6.1);
+        glTexCoord2fv(ctpF[3]);  glVertex3f(22.1, 15.6, -6.1);
+    glEnd();
+}
+
+void setTexturaCorpoMaspDireita(GLuint texturaMasp){
+    GLfloat ctpF[4][2]={
+        {20, 1},
+        {20, 0},
+        {-1, 1},
+        {-1, 0}
+    };
+    glBindTexture(GL_TEXTURE_2D, texturaMasp);
+    glBegin(GL_QUADS);
+        glTexCoord2fv(ctpF[1]);  glVertex3f(-22.1, 15.6, 24.1);
+        glTexCoord2fv(ctpF[0]);  glVertex3f(-22.1, 5.5, 24.1);
+        glTexCoord2fv(ctpF[2]);  glVertex3f(-22.1, 5.5, -6.1);
+        glTexCoord2fv(ctpF[3]);  glVertex3f(-22.1, 15.6, -6.1);
+    glEnd();
+}
+
+void setTetoMasp(GLuint textura_teto){
+    GLfloat ctpF[4][2]={
+        {20, 1},
+        {20, 0},
+        {-1, 1},
+        {-1, 0}
+    };
+    glBindTexture(GL_TEXTURE_2D, textura_teto);
+    glBegin(GL_QUADS);
+        glTexCoord2fv(ctpF[1]);  glVertex3f(-22.1, 15.6, 24.1);
+        glTexCoord2fv(ctpF[0]);  glVertex3f(22.1, 15.6, 24.1);
+        glTexCoord2fv(ctpF[2]);  glVertex3f(22.1, 15.6, -6.1);
+        glTexCoord2fv(ctpF[3]);  glVertex3f(-22.1, 15.6, -6.1);
+    glEnd();
+}

@@ -27,12 +27,14 @@ static double zoom = 0.5;
 #define rua "texturas/rua.rgb"
 #define chaoMasp "texturas/chaoMasp.rgb"
 #define faixaPedestre "texturas/faixa.rgb"
-#define calcada "texturas/calcada.rgb"
+#define corpo "texturas/corpo.rgb"
+#define teto "texturas/Teto.rgb"
 
 GLuint  textura_rua;
 GLuint  textura_chao;
 GLuint  textura_faixa;
-GLuint  textura_calcada;
+GLuint  textura_corpo;
+GLuint  textura_teto;
 
 static int posiX = 3;
 
@@ -120,26 +122,53 @@ void carregar_faixa(void){
 
 }
 
-void carregar_calcada(void){
-  IMAGE *calcadaImg;
+void carregar_corpoMasp(void){
+  IMAGE *imgCorpo;
   GLenum gluerrC;
 
   /* textura do plano */
-  glGenTextures(1, &textura_calcada);
-  glBindTexture(GL_TEXTURE_2D, textura_calcada);
+  glGenTextures(1, &textura_corpo);
+  glBindTexture(GL_TEXTURE_2D, textura_corpo);
 
-    if(!(calcadaImg=ImageLoad(calcada))) {
+    if(!(imgCorpo=ImageLoad(corpo))) {
     fprintf(stderr,"Error reading a texture.\n");
     exit(-1);
   }
 
     gluerrC=gluBuild2DMipmaps(GL_TEXTURE_2D, 3, 
-			   calcadaImg->sizeX, calcadaImg->sizeY, 
+			   imgCorpo->sizeX, imgCorpo->sizeY, 
 			   GL_RGB, GL_UNSIGNED_BYTE, 
-			   (GLvoid *)(calcadaImg->data));
+			   (GLvoid *)(imgCorpo->data));
 
   if(gluerrC){
     fprintf(stderr,"GLULib%s\n",gluErrorString(gluerrC));
+    exit(-1);
+  }
+
+  glTexParameterf(GL_TEXTURE_2D,GL_TEXTURE_WRAP_T,GL_REPEAT);
+  glTexEnvf(GL_TEXTURE_ENV,GL_TEXTURE_ENV_MODE,GL_DECAL);
+}
+
+void carregar_teto(void){
+  IMAGE *imgTeto;
+  GLenum gluerrT;
+
+  /* textura do plano */
+  glGenTextures(1, &textura_teto);
+  glBindTexture(GL_TEXTURE_2D, textura_teto);
+
+    if(!(imgTeto=ImageLoad(teto))) {
+    fprintf(stderr,"Error reading a texture.\n");
+    exit(-1);
+  }
+
+    gluerrT=gluBuild2DMipmaps(GL_TEXTURE_2D, 3, 
+			   imgTeto->sizeX, imgTeto->sizeY, 
+			   GL_RGB, GL_UNSIGNED_BYTE, 
+			   (GLvoid *)(imgTeto->data));
+
+  if(gluerrT){
+    fprintf(stderr,"GLULib%s\n",gluErrorString(gluerrT));
     exit(-1);
   }
 
@@ -182,6 +211,10 @@ void display(void){
 
   carregar_faixa();
 
+  carregar_corpoMasp();
+
+  carregar_teto();
+
   setTexturaRua(textura_rua);
 
   setTexturaRuaDescidaEsquerda(textura_rua);
@@ -193,6 +226,16 @@ void display(void){
   setTexturaFaixaEsquerda(textura_faixa);
 
   setTexturaFaixaDireita(textura_faixa);
+  
+  setTexturaCorpoMaspFrente(textura_corpo);
+
+  setTexturaCorpoMaspTraz(textura_corpo);
+
+  setTexturaCorpoMaspEsquerda(textura_corpo);
+
+  setTexturaCorpoMaspDireita(textura_corpo);
+
+  setTetoMasp(textura_teto);
 
   glDisable(GL_TEXTURE_2D);
 
