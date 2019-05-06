@@ -162,10 +162,10 @@ void setTexturaCorpoMaspDireita(GLuint texturaMasp){
 
 void setTetoMasp(GLuint textura_teto){
     GLfloat ctpF[4][2]={
-        {20, 1},
         {20, 0},
-        {-1, 1},
-        {-1, 0}
+        {-1, 0},
+        {20, 1},
+        {-1, 1}
     };
     glBindTexture(GL_TEXTURE_2D, textura_teto);
     glBegin(GL_QUADS);
