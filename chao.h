@@ -2,7 +2,7 @@ void criaChao(){
 
   /* chao */
   glPushMatrix();
-    glColor3f(0.82, 0.71, 0.);
+    glColor3f(0.82, 0.71, 0.55);
     glTranslatef (0.0, -4.5, 0.0);
     glScalef (50.0, 10.0, 45.5);
     glutSolidCube (1.0);
