@@ -106,9 +106,9 @@ void setTexturaCorpoMaspFrente(GLuint texturaMasp){
     glBindTexture(GL_TEXTURE_2D, texturaMasp);
     glBegin(GL_QUADS);
         glTexCoord2fv(ctpF[1]);  glVertex3f(22.1, 15.6, 24.1);
-        glTexCoord2fv(ctpF[0]);  glVertex3f(-22.1, 15.5, 24.1);
+        glTexCoord2fv(ctpF[0]);  glVertex3f(-22.1, 15.6, 24.1);
         glTexCoord2fv(ctpF[2]);  glVertex3f(-22.1, 5.5, 24.1);
-        glTexCoord2fv(ctpF[3]);  glVertex3f(22.1, 5.6, 24.1);
+        glTexCoord2fv(ctpF[3]);  glVertex3f(22.1, 5.5, 24.1);
     glEnd();
 }
 
@@ -122,9 +122,9 @@ void setTexturaCorpoMaspTraz(GLuint texturaMasp){
     glBindTexture(GL_TEXTURE_2D, texturaMasp);
     glBegin(GL_QUADS);
         glTexCoord2fv(ctpF[1]);  glVertex3f(22.1, 15.6, -6.1);
-        glTexCoord2fv(ctpF[0]);  glVertex3f(-22.1, 15.5, -6.1);
+        glTexCoord2fv(ctpF[0]);  glVertex3f(-22.1, 15.6, -6.1);
         glTexCoord2fv(ctpF[2]);  glVertex3f(-22.1, 5.5, -6.1);
-        glTexCoord2fv(ctpF[3]);  glVertex3f(22.1, 5.6, -6.1);
+        glTexCoord2fv(ctpF[3]);  glVertex3f(22.1, 5.5, -6.1);
     glEnd();
 }
 
