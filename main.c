@@ -98,7 +98,6 @@ void carregar_rua(void){
 void carregar_faixa(void){
   IMAGE *faixa;
   GLenum gluerrF;
-
   /* textura do plano */
   glGenTextures(1, &textura_faixa);
   glBindTexture(GL_TEXTURE_2D, textura_faixa);
