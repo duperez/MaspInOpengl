@@ -5,7 +5,7 @@ Eduardo Bianconi Perez: RA 196244 & Mateus Duarte castello: RA 203257
 
 to contact us use: e196244@dac.unicamp.br
 
-#camera commands:
+# camera commands:
 
 use w/a/s/d to rotate camera
 
