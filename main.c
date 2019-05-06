@@ -4,14 +4,14 @@
 //by
 //Eduardo Bianconi Perez: RA 196244 & Mateus Duarte castello: RA 203257
 
-#include<stdlib.h>
-#include<GL/glut.h>
-#include<stdio.h>
+#include <stdlib.h>
+#include <GL/glut.h>
+#include <stdio.h>
 #include "chao.h"
 #include "masp.h"
 #include "objetos.h"
 #include "image.c"
-
+#include "texturas.h"
 
 #define IMAGIC      0x01da
 #define IMAGIC_SWAP 0xda01
@@ -24,43 +24,15 @@ static double zoom = 0.5;
 
 #define COORD_textura_rua 1
 #define COR_DO_PLANO 0.52,0.52,0.78,1.0
-#define rua "rua.rgb"
-#define chaoMasp "chaoMasp.rgb"
-#define faixaPedestre "faixa.rgb"
+#define rua "texturas/rua.rgb"
+#define chaoMasp "texturas/chaoMasp.rgb"
+#define faixaPedestre "texturas/faixa.rgb"
+#define calcada "texturas/calcada.rgb"
 
 GLuint  textura_rua;
 GLuint  textura_chao;
 GLuint  textura_faixa;
-
-GLfloat ctpA[4][2]={
-  {1, 0},
-  {-1, 0},
-  {1, 1},
-  {-1, 1}
-};
-
-GLfloat ctpA2[4][2]={
-  {1, 1},
-  {1, 0},
-  {-1, 1},
-  {-1, 0}
-};
-
-GLfloat ctpM[4][2]={
-  {20, 0},
-  {-20, 0},
-  {20, 20},
-  {-20, 20}
-};
-
-GLfloat ctpF[4][2]={
-  {1, 0},
-  {-1, 0},
-  {1, 1},
-  {-1, 1}
-};
-
-
+GLuint  textura_calcada;
 
 static int posiX = 3;
 
@@ -86,11 +58,8 @@ void carregar_chaoMasp(void){
     fprintf(stderr,"GLULib%s\n",gluErrorString(gluerrM));
     exit(-1);
   }
-
-  // glTexParameterf(GL_TEXTURE_2D,GL_TEXTURE_WRAP_S,GL_CLAMP_TO_BORDER);
-  glTexParameterf(GL_TEXTURE_2D,GL_TEXTURE_WRAP_T,GL_MIRRORED_REPEAT);
-  // glTexParameterf(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_LINEAR_MIPMAP_LINEAR);
-  // glTexParameterf(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_LINEAR);
+  glTexParameterf(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_LINEAR_MIPMAP_LINEAR);
+  glTexParameterf(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_LINEAR);
   glTexEnvf(GL_TEXTURE_ENV,GL_TEXTURE_ENV_MODE,GL_DECAL);
 
 }
@@ -118,10 +87,7 @@ void carregar_rua(void){
     exit(-1);
   }
 
-  // glTexParameterf(GL_TEXTURE_2D,GL_TEXTURE_WRAP_S,GL_CLAMP_TO_BORDER);
   glTexParameterf(GL_TEXTURE_2D,GL_TEXTURE_WRAP_T,GL_MIRRORED_REPEAT);
-  // glTexParameterf(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_LINEAR_MIPMAP_LINEAR);
-  // glTexParameterf(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_LINEAR);
   glTexEnvf(GL_TEXTURE_ENV,GL_TEXTURE_ENV_MODE,GL_DECAL);
 
 }
@@ -149,101 +115,86 @@ void carregar_faixa(void){
     exit(-1);
   }
 
-  // glTexParameterf(GL_TEXTURE_2D,GL_TEXTURE_WRAP_S,GL_CLAMP_TO_BORDER);
   glTexParameterf(GL_TEXTURE_2D,GL_TEXTURE_WRAP_T,GL_MIRRORED_REPEAT);
-  // glTexParameterf(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_LINEAR_MIPMAP_LINEAR);
-  // glTexParameterf(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_LINEAR);
+  glTexEnvf(GL_TEXTURE_ENV,GL_TEXTURE_ENV_MODE,GL_DECAL);
+
+}
+
+void carregar_calcada(void){
+  IMAGE *calcadaImg;
+  GLenum gluerrC;
+
+  /* textura do plano */
+  glGenTextures(1, &textura_calcada);
+  glBindTexture(GL_TEXTURE_2D, textura_calcada);
+
+    if(!(calcadaImg=ImageLoad(calcada))) {
+    fprintf(stderr,"Error reading a texture.\n");
+    exit(-1);
+  }
+
+    gluerrC=gluBuild2DMipmaps(GL_TEXTURE_2D, 3, 
+			   calcadaImg->sizeX, calcadaImg->sizeY, 
+			   GL_RGB, GL_UNSIGNED_BYTE, 
+			   (GLvoid *)(calcadaImg->data));
+
+  if(gluerrC){
+    fprintf(stderr,"GLULib%s\n",gluErrorString(gluerrC));
+    exit(-1);
+  }
+
+  glTexParameterf(GL_TEXTURE_2D,GL_TEXTURE_WRAP_T,GL_MIRRORED_REPEAT);
   glTexEnvf(GL_TEXTURE_ENV,GL_TEXTURE_ENV_MODE,GL_DECAL);
 
 }
 
 void init(void){
   glEnable(GL_DEPTH_TEST);
-  /* habilita/desabilita uso de texturas*/
-  // carregar_texturas();
-  //glEnable(GL_TEXTURE_2D);
 }
 
-
 void display(void){
-   glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
+  glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
   glClearColor (0.0, 0.0, 0.0, 0.0);
   glColor4f(COR_DO_PLANO);
   glTexEnvf(GL_TEXTURE_ENV,GL_TEXTURE_ENV_MODE,GL_DECAL);
   glPushMatrix();
-gluLookAt(0, 0.25, 1, 0, 0, 0, 0, 1, 0);
+  gluLookAt(0, 0.25, 1, 0, 0, 0, 0, 1, 0);
 
   glRotatef ((GLfloat) ANGX, 0, 1, 0);
 
   glRotatef ((GLfloat) ANGY, 1, 0, 0);
 
   glScalef(zoom, zoom, zoom);
-  
-  glEnable(GL_TEXTURE_2D);
-  carregar_rua();
-  carregar_chaoMasp();
-  carregar_faixa();
-
-
-
-  glBindTexture(GL_TEXTURE_2D, textura_rua);
-  glBegin(GL_QUADS);
-  glTexCoord2fv(ctpA[1]);  glVertex3f(-35, 0.501, 27.7);
-  glTexCoord2fv(ctpA[0]);  glVertex3f(35, 0.501, 27.7);
-  glTexCoord2fv(ctpA[2]);  glVertex3f(35, 0.501, 37.7);
-  glTexCoord2fv(ctpA[3]);  glVertex3f(-35, 0.501, 37.7);
-  glEnd();
-
-    glBindTexture(GL_TEXTURE_2D, textura_rua);
-  glBegin(GL_QUADS);
-  glTexCoord2fv(ctpA2[1]);  glVertex3f(35, 0.501, 22.8);
-  glTexCoord2fv(ctpA2[0]);  glVertex3f(25, 0.501, 22.8);
-  glTexCoord2fv(ctpA2[2]);  glVertex3f(25, -7.5, -22.8);
-  glTexCoord2fv(ctpA2[3]);  glVertex3f(35, -7.5, -22.8);
-  glEnd();
-
-      glBindTexture(GL_TEXTURE_2D, textura_rua);
-  glBegin(GL_QUADS);
-  glTexCoord2fv(ctpA2[1]);  glVertex3f(-35, 0.501, 22.8);
-  glTexCoord2fv(ctpA2[0]);  glVertex3f(-25, 0.501, 22.8);
-  glTexCoord2fv(ctpA2[2]);  glVertex3f(-25, -7.5, -22.8);
-  glTexCoord2fv(ctpA2[3]);  glVertex3f(-35, -7.5, -22.8);
-  glEnd();
-
-  glBindTexture(GL_TEXTURE_2D, textura_chao);
-    glBegin(GL_QUADS);
-  glTexCoord2fv(ctpM[1]);  glVertex3f(-25, 0.501, 22.8);
-  glTexCoord2fv(ctpM[0]);  glVertex3f(25, 0.501, 22.8);
-  glTexCoord2fv(ctpM[2]);  glVertex3f(25, 0.501, -22.8);
-  glTexCoord2fv(ctpM[3]);  glVertex3f(-25, 0.501, -22.8);
-  glEnd();
-
-    glBindTexture(GL_TEXTURE_2D, textura_faixa);
-    glBegin(GL_QUADS);
-  glTexCoord2fv(ctpF[1]);  glVertex3f(-35, 0.501, 27.7);
-  glTexCoord2fv(ctpF[0]);  glVertex3f(-25, 0.501, 27.7);
-  glTexCoord2fv(ctpF[2]);  glVertex3f(-25, 0.501, 22.8);
-  glTexCoord2fv(ctpF[3]);  glVertex3f(-35, 0.501, 22.8);
-  glEnd();
-
-      glBindTexture(GL_TEXTURE_2D, textura_faixa);
-    glBegin(GL_QUADS);
-  glTexCoord2fv(ctpF[1]);  glVertex3f(35, 0.501, 27.7);
-  glTexCoord2fv(ctpF[0]);  glVertex3f(25, 0.501, 27.7);
-  glTexCoord2fv(ctpF[2]);  glVertex3f(25, 0.501, 22.8);
-  glTexCoord2fv(ctpF[3]);  glVertex3f(35, 0.501, 22.8);
-  glEnd();
-  glDisable(GL_TEXTURE_2D);
-
 
   criaChao();
 
-  criaMasp(); 
+  criaMasp();
   
   criaRua();
 
   criaObjetos();
 
+  glEnable(GL_TEXTURE_2D);
+
+  carregar_rua();
+
+  carregar_chaoMasp();
+
+  carregar_faixa();
+
+  setTexturaRua(textura_rua);
+
+  setTexturaRuaDescidaEsquerda(textura_rua);
+
+  setTexturaRuaDescidaDireita(textura_rua);
+
+  setTexturaChaoMasp(textura_chao);
+
+  setTexturaFaixaEsquerda(textura_faixa);
+
+  setTexturaFaixaDireita(textura_faixa);
+
+  glDisable(GL_TEXTURE_2D);
 
   glPopMatrix();
   glutSwapBuffers();

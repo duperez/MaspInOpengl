@@ -1,7 +1,7 @@
 void criaMasp(){
   /* suporte esquerda 1*/ 
   glPushMatrix();
-    glColor3f(1.0, 0.0, 0.0);
+    glColor3f(0.89, 0.15, 0.21);
     glTranslatef (-23.5, 10.5, 18.5);
     glScalef (3.0, 20.0, 3.0);
     glutSolidCube (1.0);
@@ -9,7 +9,7 @@ void criaMasp(){
 
     /* suporte direita 1*/ 
   glPushMatrix();
-    glColor3f(1.0, 0.0, 0.0);
+    glColor3f(0.89, 0.15, 0.21);
     glTranslatef (23.5, 10.5, 18.5);
     glScalef (3.0, 20.0, 3.0);
     glutSolidCube (1.0);
@@ -17,7 +17,7 @@ void criaMasp(){
 
     /* suporte esquerda 2*/ 
   glPushMatrix();
-    glColor3f(1.0, 0.0, 0.0);
+    glColor3f(0.89, 0.15, 0.21);
     glTranslatef (-23.5, 10.5, 0);
     glScalef (3.0, 20.0, 3.0);
     glutSolidCube (1.0);
@@ -25,7 +25,7 @@ void criaMasp(){
 
     /* suporte direita 2*/ 
   glPushMatrix();
-    glColor3f(1.0, 0.0, 0.0);
+    glColor3f(0.89, 0.15, 0.21);
     glTranslatef (23.5, 10.5, 0);
     glScalef (3.0, 20.0, 3.0);
     glutSolidCube (1.0);
@@ -41,7 +41,7 @@ void criaMasp(){
 
       /* superior esquerdo*/ 
   glPushMatrix();
-    glColor3f(1.0, 0.0, 0.0);
+    glColor3f(0.89, 0.15, 0.21);
     glTranslatef (0, 18, 0);
     glScalef (44.0, 5.0, 3);
     glutSolidCube (1.0);
@@ -49,7 +49,7 @@ void criaMasp(){
 
       /* superior direito*/ 
   glPushMatrix();
-    glColor3f(1.0, 0.0, 0.0);
+    glColor3f(0.89, 0.15, 0.21);
     glTranslatef (0, 18, 18.5);
     glScalef (44.0, 5.0, 3);
     glutSolidCube (1.0);
