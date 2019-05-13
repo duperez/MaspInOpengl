@@ -1,4 +1,7 @@
 void setTexturaRua(GLuint textura_rua){
+
+  GLfloat amaerelo_difusa[]    = { 1, 1, 0, 1.0 };
+  glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, amaerelo_difusa);
     
     GLfloat ctpA[4][2]={
         {1, 0},
@@ -17,6 +20,10 @@ void setTexturaRua(GLuint textura_rua){
 }
 
 void setTexturaRuaDescidaEsquerda(GLuint textura_rua){
+
+   GLfloat aux_difusa[]    = { 1, 1, 0, 1.0 };
+   glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, aux_difusa);
+
     GLfloat ctpA2[4][2]={
         {1, 1},
         {1, 0},
@@ -33,6 +40,8 @@ void setTexturaRuaDescidaEsquerda(GLuint textura_rua){
 }
 
 void setTexturaRuaDescidaDireita(GLuint textura_rua){
+   GLfloat aux_difusa[]    = { 1, 1, 0, 1.0 };
+   glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, aux_difusa);
     GLfloat ctpA2[4][2]={
         {1, 1},
         {1, 0},
@@ -49,6 +58,8 @@ void setTexturaRuaDescidaDireita(GLuint textura_rua){
 }
 
 void setTexturaChaoMasp(GLuint textura_chao){
+  GLfloat aux_difusa[]    = { 1, 1, 0, 1.0 };
+   glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, aux_difusa);
     GLfloat ctpM[4][2]={
         {20, 0},
         {-20, 0},
@@ -65,6 +76,8 @@ void setTexturaChaoMasp(GLuint textura_chao){
 }
 
 void setTexturaFaixaEsquerda(GLuint textura_faixa){
+   GLfloat aux_difusa[]    = { 1, 1, 0, 1.0 };
+   glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, aux_difusa);
     GLfloat ctpF[4][2]={
         {1, 0},
         {-1, 0},
@@ -81,6 +94,8 @@ void setTexturaFaixaEsquerda(GLuint textura_faixa){
 }
 
 void setTexturaFaixaDireita(GLuint textura_faixa){
+  GLfloat aux_difusa[]    = { 1, 1, 0, 1.0 };
+   glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, aux_difusa);
     GLfloat ctpF[4][2]={
         {1, 0},
         {-1, 0},
@@ -97,6 +112,8 @@ void setTexturaFaixaDireita(GLuint textura_faixa){
 }
 
 void setTexturaCorpoMaspFrente(GLuint texturaMasp){
+  GLfloat aux_difusa[]    = { 1, 1, 0, 1.0 };
+   glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, aux_difusa);
     GLfloat ctpF[4][2]={
         {20, 0},
         {-1, 0},
@@ -113,6 +130,8 @@ void setTexturaCorpoMaspFrente(GLuint texturaMasp){
 }
 
 void setTexturaCorpoMaspTraz(GLuint texturaMasp){
+  GLfloat aux_difusa[]    = { 1, 1, 0, 1.0 };
+   glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, aux_difusa);
     GLfloat ctpF[4][2]={
         {20, 0},
         {-1, 0},
@@ -129,6 +148,8 @@ void setTexturaCorpoMaspTraz(GLuint texturaMasp){
 }
 
 void setTexturaCorpoMaspEsquerda(GLuint texturaMasp){
+  GLfloat aux_difusa[]    = { 1, 1, 0, 1.0 };
+   glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, aux_difusa);
     GLfloat ctpF[4][2]={
         {20, 1},
         {20, 0},
@@ -145,6 +166,8 @@ void setTexturaCorpoMaspEsquerda(GLuint texturaMasp){
 }
 
 void setTexturaCorpoMaspDireita(GLuint texturaMasp){
+  GLfloat aux_difusa[]    = { 1, 1, 0, 1.0 };
+   glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, aux_difusa);
     GLfloat ctpF[4][2]={
         {20, 1},
         {20, 0},

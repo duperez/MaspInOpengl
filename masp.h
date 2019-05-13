@@ -1,4 +1,12 @@
 void criaMasp(){
+
+  GLfloat masp_especular[] = { 1, 0, 0, 1 };
+  GLfloat masp_brilho[]    = { 100.0 };
+  GLfloat masp_difusa[]    = { 1, 0, 0.0, 1.0 };
+  glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, masp_difusa);
+  // glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, masp_especular);
+  glMaterialfv(GL_FRONT_AND_BACK, GL_SHININESS, masp_brilho);
+
   /* suporte esquerda 1*/ 
   glPushMatrix();
     glColor3f(0.89, 0.15, 0.21);
@@ -54,6 +62,13 @@ void criaMasp(){
     glScalef (44.0, 5.0, 3);
     glutSolidCube (1.0);
   glPopMatrix();
+
+    GLfloat rampa_especular[] = {0.44, 0.5, 0.56, 1 };
+  GLfloat rampa_brilho[]    = { 100.0 };
+  GLfloat rampa_difusa[]    = {0.44, 0.5, 0.56, 1.0 };
+  glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, rampa_difusa);
+  // glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, masp_especular);
+  glMaterialfv(GL_FRONT_AND_BACK, GL_SHININESS, rampa_brilho);
 
         /* rampa trazeira */
   glPushMatrix();

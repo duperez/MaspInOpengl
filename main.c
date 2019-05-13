@@ -36,6 +36,20 @@ GLuint  textura_faixa;
 GLuint  textura_corpo;
 GLuint  textura_teto;
 
+GLfloat mat_a_difusa[]    = { 1.0, 1.0, 0.0, 0.0 };
+GLfloat mat_b_difusa[]    = { 0.7, 0.7, 0.7, 0.5 };
+
+GLfloat posicao_luz0[]    = { 10.0, 10.0, 0.0, 1.0};
+GLfloat cor_luz0[]        = { 1.0, 1.0, 1.0, 1.0};
+GLfloat cor_luz0_amb[]    = { 0.3, 0.3, 0.3, 0};
+
+GLfloat posicao_luz1[]    = { 10.0, 5.0, 20, 1};
+GLfloat cor_luz1[]        = { 1.0, 1.0, 0.0, 1};
+GLfloat cor_luz1_amb[]    = { 1, 1, 0, 1};
+
+
+GLfloat sem_cor[]         = { 0.0, 0.0, 0.0, 1.0};
+
 static int posiX = 3;
 
 void carregar_chaoMasp(void){
@@ -182,13 +196,33 @@ void carregar_teto(void){
 
 void init(void){
   glEnable(GL_DEPTH_TEST);
+  glEnable(GL_BLEND);
+  glBlendFunc(GL_SRC_ALPHA,GL_ONE_MINUS_SRC_ALPHA);
+
+  glEnable(GL_LIGHTING);
+  glEnable(GL_LIGHT0);
+
+  glEnable(GL_AUTO_NORMAL);
+  glEnable(GL_NORMALIZE);
 }
 
 void display(void){
+  glEnable(GL_DEPTH_TEST);
+  glEnable(GL_LIGHTING);
+
+  glDepthMask(GL_TRUE);
+
+  glShadeModel(GL_SMOOTH);
+
+  glDepthMask(GL_TRUE);
+
+  glMaterialfv(GL_FRONT, GL_DIFFUSE, mat_a_difusa);
+
   glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
   glClearColor (0.0, 0.0, 0.0, 0.0);
-  glColor4f(COR_DO_PLANO);
   glTexEnvf(GL_TEXTURE_ENV,GL_TEXTURE_ENV_MODE,GL_DECAL);
+
+  
   glPushMatrix();
   gluLookAt(0, 0.25, 1, 0, 0, 0, 0, 1, 0);
 
@@ -198,6 +232,8 @@ void display(void){
 
   glScalef(zoom, zoom, zoom);
 
+  glShadeModel(GL_SMOOTH);
+  
   criaChao();
 
   criaMasp();
@@ -220,11 +256,11 @@ void display(void){
 
   setTexturaRua(textura_rua);
 
-  setTexturaRuaDescidaEsquerda(textura_rua);
+  // setTexturaRuaDescidaEsquerda(textura_rua);
 
-  setTexturaRuaDescidaDireita(textura_rua);
+  // setTexturaRuaDescidaDireita(textura_rua);
 
-  setTexturaChaoMasp(textura_chao);
+  // setTexturaChaoMasp(textura_chao);
 
   setTexturaFaixaEsquerda(textura_faixa);
 
