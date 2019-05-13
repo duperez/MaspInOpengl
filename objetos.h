@@ -15,7 +15,9 @@ void criaObjetos(){
   glPopMatrix();
 
   GLfloat placa_difusa[]    = { 0.18, 0.31, 0.31, 1.0 };
+  GLfloat rampa_especular[] = {0.44, 0.5, 0.56, 1 };
   glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, placa_difusa);
+  glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, placa_difusa);
 
   //placa sinaleiro
   glPushMatrix();
@@ -26,7 +28,9 @@ void criaObjetos(){
   glPopMatrix();
 
   GLfloat vermelho_difusa[]    = { 1 , 0, 0, 1.0 };
-  glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, vermelho_difusa);  
+  GLfloat vermelho_brilho[]    = { 100.0 };
+  glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, vermelho_difusa);
+  glMaterialfv(GL_FRONT_AND_BACK, GL_SHININESS, vermelho_brilho);
 
     //cor vermelha sinaleiro
   glPushMatrix();
